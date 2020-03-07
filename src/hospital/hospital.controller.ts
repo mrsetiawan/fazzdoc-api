@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Patch} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, Delete } from '@nestjs/common';
 import { HospitalService } from './hospital.service'
 
 @Controller('hospital')
@@ -41,6 +41,13 @@ export class HospitalController {
     @Body('alamat') hosAlamat: string
   ) {
     this.appHospital.updateHospital(id, hosNamaRumahSakit, hosTlp, hosAlamat);
+    return null;
+  }
+
+  //delete
+  @Delete(':id')
+  removeHospital(@Param('id') id: string){
+    this.appHospital.deleteHos(id);
     return null;
   }
 

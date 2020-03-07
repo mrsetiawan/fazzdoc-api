@@ -47,6 +47,14 @@ export class HospitalService {
     this.hospital[index] = updateHos;
   }
 
+  //delete
+
+  deleteHos(id: string){
+    const index = this.findHospital(id)[1];
+    this.hospital.splice(index, 1);
+  }
+
+  //find hospital 
   private findHospital(id: string): [HospitalModel, number] {
     const findHosIndex = this.hospital.findIndex((hos) => hos.id === id);
     const findHos = this.hospital[findHosIndex];
