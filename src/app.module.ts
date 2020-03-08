@@ -20,7 +20,7 @@ import { PatientModule } from './patient/patient.module';
     HospitalModule, 
     DoctorModule, 
     PatientModule,
-    MongooseModule.forRoot('mongodb+srv://rahmat:QJAnikXBlNbCg2Wf@cluster0-fgqds.mongodb.net/fazzdoc?retryWrites=true&w=majority')
+    // MongooseModule.forRoot('mongodb+srv://rahmat:QJAnikXBlNbCg2Wf@cluster0-fgqds.mongodb.net/fazzdoc?retryWrites=true&w=majority')
     
   ],
   controllers: [

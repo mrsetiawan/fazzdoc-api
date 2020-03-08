@@ -1,8 +1,8 @@
-export class HospitalModel {
+export class PatientModel {
   constructor(
     public id: string,
-    public nama_rumah_sakit: string,
+    public nama_pasien: string,
     public tlp: string,
     public alamat: string
-  ) {}
+  ) { }
 }

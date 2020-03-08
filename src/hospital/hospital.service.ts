@@ -1,29 +1,18 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Hospital } from './hospital.model';
+import { HospitalModel } from './hospital.model';
 import { v4 as uuidv4 } from 'uuid';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
 
 @Injectable()
 export class HospitalService {
 
-  private hospital: Hospital[] = [];
+  private hospital: HospitalModel[] = [];
 
-  //InjectModel = nama model dari module
-  constructor(@InjectModel('Hospital') private readonly hospitalModel: Model<Hospital>) {}
   //add hospital
-   insertHospital(nama_rumah_sakit: string, tlp: string, alamat: string) {
-    // const id = uuidv4();
-    const newHospital = new this.hospitalModel({
-      nama_rumah_sakit, 
-      tlp, 
-      alamat
-    });
-
-    const result =  newHospital.save();
-    // this.hospital.push(newHospital);
-    console.log(result);
-    return 'id';
+  insertHospital(nama_rumah_sakit: string, tlp: string, alamat: string) {
+    const id = uuidv4();
+    const newHospital = new HospitalModel(id, nama_rumah_sakit, tlp, alamat);
+    this.hospital.push(newHospital);
+    return id;
   }
 
   //list
@@ -59,14 +48,13 @@ export class HospitalService {
   }
 
   //delete
-
   deleteHos(id: string){
     const index = this.findHospital(id)[1];
-    this.hospital.splice(index, 1);
+    this.hospital.splice(index, 1)
   }
 
   //find hospital 
-  private findHospital(id: string): [Hospital, number] {
+  private findHospital(id: string): [HospitalModel, number] {
     const findHosIndex = this.hospital.findIndex((hos) => hos.id === id);
     const findHos = this.hospital[findHosIndex];
 
