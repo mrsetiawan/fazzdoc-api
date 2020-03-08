@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { MongooseModule } from '@nestjs/mongoose';
 //module hospital
 import { HospitalController } from './hospital/hospital.controller';
 import { HospitalModule } from './hospital/hospital.module';
@@ -18,7 +19,9 @@ import { PatientModule } from './patient/patient.module';
   imports: [
     HospitalModule, 
     DoctorModule, 
-    PatientModule
+    PatientModule,
+    MongooseModule.forRoot('mongodb+srv://rahmat:QJAnikXBlNbCg2Wf@cluster0-fgqds.mongodb.net/fazzdoc?retryWrites=true&w=majority')
+    
   ],
   controllers: [
     AppController, 
