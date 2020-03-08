@@ -24,4 +24,26 @@ export class PatientController {
   getPatient() {
     return {data: this.appPatient.getPatient()};
   }
+
+  @Get(':id')
+  getHospitalById(@Param('id') id: string){
+    return this.appPatient.getPatientById(id);
+  }
+
+  @Patch(':id')
+  updatePatient(
+    @Param('id') id: string,
+    @Body('nama_pasien') namaPasien: string,
+    @Body('tlp') tlpPasien: string,
+    @Body('alamat') alamatPasien: string
+  ){
+    this.appPatient.updatePatient(id, namaPasien, tlpPasien, alamatPasien);
+    return null;
+  }
+
+  @Delete(':id')
+  removePatient(@Param('id') id: string){
+    this.appPatient.deletePatient(id);
+    return null;
+  }
 }
